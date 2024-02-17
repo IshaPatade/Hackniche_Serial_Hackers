@@ -109,7 +109,7 @@ const OverviewChart = ({ data2 }) => {
             },
           },
         }}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        margin={{ top: 8, right: 100, bottom: 95, left: 80 }}
         xScale={{ type: "point" }}
         yScale={{ type: "linear", min: 0, max: "auto" }}
         curve="linear"

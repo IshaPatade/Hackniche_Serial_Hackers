@@ -41,14 +41,14 @@ const Graph = () => {
           datasets: [{
             label: 'Hotel 1',
             data: hotel1Data,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)', // Red color for Hotel 1
-            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: '#990000', // Red color for Hotel 1
+            borderColor: '#990000',
             borderWidth: 1,
           }, {
             label: 'Hotel 2',
             data: hotel2Data,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Blue color for Hotel 2
-            borderColor: 'rgba(54, 162, 235, 1)',
+            backgroundColor: '#e6ffe6', // Blue color for Hotel 2
+            borderColor: '#e6ffe6',
             borderWidth: 1,
           }]
         },

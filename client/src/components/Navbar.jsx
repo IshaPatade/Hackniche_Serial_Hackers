@@ -84,7 +84,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
           </IconButton>
           <FlexBetween
             backgroundColor={theme.palette.background.alt}
-            borderRadius="9px"
+            borderRadius="10px"
             gap="3rem"
             p="0.1rem 1.5rem"
           >
@@ -99,7 +99,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
         <FlexBetween gap="1.5rem">
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
-              <DarkModeOutlined sx={{ fontSize: "25px" }} />
+              <DarkModeOutlined sx={{ fontSize: "25px", color: theme.palette.secondary[600]}} />
             ) : (
               <LightModeOutlined sx={{ fontSize: "25px" }} />
             )}
@@ -108,7 +108,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
             <SettingsOutlined sx={{ fontSize: "25px" }} />
           </IconButton> */}
           <IconButton onClick={handleNotificationClick}>
-            <NotificationsIcon sx={{ fontSize: "25px" }} />
+            <NotificationsIcon sx={{ fontSize: "25px", color: theme.palette.secondary[600] }} />
           </IconButton>
 
           <FlexBetween>
@@ -135,7 +135,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 <Typography
                   fontWeight="bold"
                   fontSize="0.85rem"
-                  sx={{ color: theme.palette.secondary[100] }}
+                  sx={{ color: theme.palette.secondary[600] }}
                 >
                   {parsedUser.email}
                 </Typography>
@@ -147,7 +147,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 </Typography> */}
               </Box>
               <ArrowDropDownOutlined
-                sx={{ color: theme.palette.secondary[300], fontSize: "25px" }}
+                sx={{ color: theme.palette.secondary[600], fontSize: "25px" }}
               />
             </Button>
             <Menu

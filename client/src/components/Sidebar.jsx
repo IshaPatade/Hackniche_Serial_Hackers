@@ -225,7 +225,7 @@ const Sidebar = ({
         >
           <Box width="100%">
             <Box m="1.5rem 2rem 2rem 3rem">
-              <FlexBetween color={theme.palette.secondary.main}>
+              <FlexBetween color={theme.palette.primary[600]}>
                 <Box display="flex" alignItems="center" gap="0.5rem">
                   <Typography variant="h4" fontWeight="bold">
                     KISANSEVA
@@ -259,12 +259,12 @@ const Sidebar = ({
                       sx={{
                         backgroundColor:
                           active === lcText
-                            ? theme.palette.secondary[300]
+                            ? theme.palette.primary[600]
                             : "transparent",
                         color:
                           active === lcText
-                            ? theme.palette.primary[600]
-                            : theme.palette.secondary[100],
+                            ? theme.palette.primary[500]
+                            : theme.palette.primary[600],
                       }}
                     >
                       <ListItemIcon
@@ -272,8 +272,8 @@ const Sidebar = ({
                           ml: "2rem",
                           color:
                             active === lcText
-                              ? theme.palette.primary[600]
-                              : theme.palette.secondary[200],
+                              ? theme.palette.primary[500]
+                              : theme.palette.primary[600],
                         }}
                       >
                         {icon}
@@ -310,14 +310,14 @@ const Sidebar = ({
               <ListItem key="Pay" disablePadding>
                 <ListItemButton
                   sx={{
-                    color: theme.palette.secondary[100],
+                    color: theme.palette.primary[600],
                   }}
                   onClick={paymentHandler}
                 >
                   <ListItemIcon
                     sx={{
                       ml: "2rem",
-                      color: theme.palette.secondary[200],
+                      color: theme.palette.primary[600],
                     }}
                   >
                     <CurrencyRupeeIcon />
