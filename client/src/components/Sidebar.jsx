@@ -47,37 +47,37 @@ const navItems = [
   //   icon: <ShoppingCartOutlined />,
   // },
   {
-    text: "Customers",
+    text: "Reviews",
     icon: <Groups2Outlined />,
   },
   {
-    text: "Transactions",
+    text: "Analysis",
     icon: <ReceiptLongOutlined />,
   },
-  {
-    text: "Geography",
-    icon: <PublicOutlined />,
-  },
-  {
-    text: "Sales",
-    icon: null,
-  },
-  {
-    text: "Overview",
-    icon: <PointOfSaleOutlined />,
-  },
-  {
-    text: "Daily",
-    icon: <TodayOutlined />,
-  },
-  {
-    text: "Monthly",
-    icon: <CalendarMonthOutlined />,
-  },
-  {
-    text: "Breakdown",
-    icon: <PieChartOutlined />,
-  },
+  // {
+  //   text: "Geography",
+  //   icon: <PublicOutlined />,
+  // },
+  // {
+  //   text: "Sales",
+  //   icon: null,
+  // },
+  // {
+  //   text: "Overview",
+  //   icon: <PointOfSaleOutlined />,
+  // },
+  // {
+  //   text: "Daily",
+  //   icon: <TodayOutlined />,
+  // },
+  // {
+  //   text: "Monthly",
+  //   icon: <CalendarMonthOutlined />,
+  // },
+  // {
+  //   text: "Breakdown",
+  //   icon: <PieChartOutlined />,
+  // },
   // {
   //   text: "Management",
   //   icon: null,

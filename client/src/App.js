@@ -15,6 +15,8 @@ import Geography from "scenes/geography";
 import Overview from "scenes/overview";
 import Daily from "scenes/daily";
 import Monthly from "scenes/monthly";
+import Reviews from "scenes/reviews";
+import Analysis from "scenes/analysis";
 import Breakdown from "scenes/breakdown";
 import Admin from "scenes/admin";
 import Performance from "scenes/performance";
@@ -62,7 +64,8 @@ function App() {
               {/* <Route path="/" element={<Navigate to="/dashboard" replace />} />  */}
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/dashboard_admin" element={<Dashboard_admin />} />
-              
+              <Route path="/reviews" element={<Reviews />} />
+              <Route path="/analysis" element={<Analysis />} />
               <Route path="/payment" element={<Payment />} />
               <Route path="/farmerform" element={<FarmerForm />} />
               <Route path="/products" element={<Products />} />
