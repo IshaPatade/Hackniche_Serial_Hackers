@@ -80,11 +80,13 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
         {/* LEFT SIDE */}
         <FlexBetween>
           <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-            <MenuIcon />
+            <MenuIcon
+              sx={{ color: theme.palette.secondary[800], fontSize: "25px" }}
+            />
           </IconButton>
-          <FlexBetween
+          {/* <FlexBetween
             backgroundColor={theme.palette.background.alt}
-            borderRadius="9px"
+            borderRadius="10px"
             gap="3rem"
             p="0.1rem 1.5rem"
           >
@@ -92,14 +94,16 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
             <IconButton>
               <Search />
             </IconButton>
-          </FlexBetween>
+          </FlexBetween> */}
         </FlexBetween>
 
         {/* RIGHT SIDE */}
         <FlexBetween gap="1.5rem">
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
-              <DarkModeOutlined sx={{ fontSize: "25px" }} />
+              <DarkModeOutlined
+                sx={{ fontSize: "25px", color: theme.palette.secondary[800] }}
+              />
             ) : (
               <LightModeOutlined sx={{ fontSize: "25px" }} />
             )}
@@ -108,7 +112,9 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
             <SettingsOutlined sx={{ fontSize: "25px" }} />
           </IconButton> */}
           <IconButton onClick={handleNotificationClick}>
-            <NotificationsIcon sx={{ fontSize: "25px" }} />
+            <NotificationsIcon
+              sx={{ fontSize: "25px", color: theme.palette.secondary[800] }}
+            />
           </IconButton>
 
           <FlexBetween>
@@ -135,7 +141,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 <Typography
                   fontWeight="bold"
                   fontSize="0.85rem"
-                  sx={{ color: theme.palette.secondary[100] }}
+                  sx={{ color: theme.palette.secondary[800] }}
                 >
                   {parsedUser.email}
                 </Typography>
@@ -147,7 +153,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 </Typography> */}
               </Box>
               <ArrowDropDownOutlined
-                sx={{ color: theme.palette.secondary[300], fontSize: "25px" }}
+                sx={{ color: theme.palette.secondary[800], fontSize: "25px" }}
               />
             </Button>
             <Menu

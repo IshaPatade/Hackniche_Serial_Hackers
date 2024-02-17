@@ -343,7 +343,7 @@ const Dashboard = () => {
             subtitle="Welcome to your dashboard"
           />
 
-          <Box>
+          {/* <Box>
             <Button
               sx={{
                 backgroundColor: theme.palette.secondary.light,
@@ -373,7 +373,7 @@ const Dashboard = () => {
             >
               Best Practices
             </Button>
-          </Box>
+          </Box> */}
         </FlexBetween>
 
         <Box
@@ -496,7 +496,7 @@ const Dashboard = () => {
               rows={(data && data.transactions) || []}
               columns={columns}
             /> */}
-            <FlexBetween sx={{padding:'3%', color: theme.palette.secondary[100], fontSize:'1.5rem' }}>
+            {/* <FlexBetween sx={{padding:'3%', color: theme.palette.secondary[100], fontSize:'1.5rem' }}>
               <Typography
                 variant="h6"
                 sx={{ color: theme.palette.secondary[100], fontSize:'1.5rem' }}
@@ -565,7 +565,7 @@ const Dashboard = () => {
                 Next Repayment Date:
               </Typography>
               15-02-2024
-            </FlexBetween>
+            </FlexBetween> */}
 
           </Box>
           <Box

@@ -20,9 +20,9 @@ export const tokensDark = {
     100: "#FBFADA",
     200: "#ADBC9F",
     300: "#7c9366",
-    400: "#4d775c",
-    500: "#436850",
-    600: "#12372A", // manually adjusted
+    400: "#c08272",
+    500: "#F3EEEA",
+    600: "#EBE3D5", // manually adjusted
     700: "#339c2b",
     800: "#267420",
     900: "#11140e",
@@ -30,14 +30,14 @@ export const tokensDark = {
   secondary: {
     // yellow
     50: "#f0f0f0", // manually adjusted
-    100: "#fff6e0",
-    200: "#ffedc2",
+    100: "#ca9181",
+    200: "#f7efed",
     300: "#ffe3a3",
     400: "#ffda85",
-    500: "#ffd166",
-    600: "#cca752",
+    500: "#776B5D",
+    600: "#B0A695",
     700: "#997d3d",
-    800: "#665429",
+    800: "#3C2A21",   //darkest brown
     900: "#332a14",
   },
 };

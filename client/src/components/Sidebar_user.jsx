@@ -47,37 +47,37 @@ const navItems = [
   //   icon: <ShoppingCartOutlined />,
   // },
   {
-    text: "Reviews",
+    text: "Customers",
     icon: <Groups2Outlined />,
   },
   {
-    text: "Analysis",
+    text: "Transactions",
     icon: <ReceiptLongOutlined />,
   },
-  // {
-  //   text: "Geography",
-  //   icon: <PublicOutlined />,
-  // },
-  // {
-  //   text: "Sales",
-  //   icon: null,
-  // },
-  // {
-  //   text: "Overview",
-  //   icon: <PointOfSaleOutlined />,
-  // },
-  // {
-  //   text: "Daily",
-  //   icon: <TodayOutlined />,
-  // },
-  // {
-  //   text: "Monthly",
-  //   icon: <CalendarMonthOutlined />,
-  // },
-  // {
-  //   text: "Breakdown",
-  //   icon: <PieChartOutlined />,
-  // },
+  {
+    text: "Geography",
+    icon: <PublicOutlined />,
+  },
+  {
+    text: "Sales",
+    icon: null,
+  },
+  {
+    text: "Overview",
+    icon: <PointOfSaleOutlined />,
+  },
+  {
+    text: "Daily",
+    icon: <TodayOutlined />,
+  },
+  {
+    text: "Monthly",
+    icon: <CalendarMonthOutlined />,
+  },
+  {
+    text: "Breakdown",
+    icon: <PieChartOutlined />,
+  },
   // {
   //   text: "Management",
   //   icon: null,
@@ -92,7 +92,7 @@ const navItems = [
   // },
 ];
 
-const Sidebar = ({
+const Sidebar_user = ({
   user,
   drawerWidth,
   isSidebarOpen,
@@ -216,7 +216,7 @@ const Sidebar = ({
             width: drawerWidth,
             "& .MuiDrawer-paper": {
               color: theme.palette.secondary[200],
-              backgroundColor: theme.palette.secondary[800],
+              backgroundColor: theme.palette.background.alt,
               boxSixing: "border-box",
               borderWidth: isNonMobile ? 0 : "2px",
               width: drawerWidth,
@@ -225,10 +225,10 @@ const Sidebar = ({
         >
           <Box width="100%">
             <Box m="1.5rem 2rem 2rem 3rem">
-              <FlexBetween color={theme.palette.grey[0]}>
+              <FlexBetween color={theme.palette.secondary.main}>
                 <Box display="flex" alignItems="center" gap="0.5rem">
                   <Typography variant="h4" fontWeight="bold">
-                    ETTARRA
+                    KISANSEVA
                   </Typography>
                 </Box>
                 {!isNonMobile && (
@@ -259,12 +259,12 @@ const Sidebar = ({
                       sx={{
                         backgroundColor:
                           active === lcText
-                            ? theme.palette.secondary[600]
+                            ? theme.palette.secondary[300]
                             : "transparent",
                         color:
                           active === lcText
-                            ? theme.palette.primary[500]
-                            : theme.palette.grey[0],
+                            ? theme.palette.primary[600]
+                            : theme.palette.secondary[100],
                       }}
                     >
                       <ListItemIcon
@@ -272,8 +272,8 @@ const Sidebar = ({
                           ml: "2rem",
                           color:
                             active === lcText
-                              ? theme.palette.primary[500]
-                              : theme.palette.grey[0],
+                              ? theme.palette.primary[600]
+                              : theme.palette.secondary[200],
                         }}
                       >
                         {icon}
@@ -306,27 +306,27 @@ const Sidebar = ({
             >
               Pay
             </List> */}
-            {/* <List>
+            <List>
               <ListItem key="Pay" disablePadding>
                 <ListItemButton
                   sx={{
-                    color: theme.palette.grey[0],
+                    color: theme.palette.secondary[100],
                   }}
                   onClick={paymentHandler}
                 >
                   <ListItemIcon
                     sx={{
                       ml: "2rem",
-                      color: theme.palette.grey[0],
+                      color: theme.palette.secondary[200],
                     }}
                   >
                     <CurrencyRupeeIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Pay" /> */}
+                  <ListItemText primary="Pay" />
                   {/* <ChevronRightOutlined sx={{ ml: "auto" }} /> */}
-                {/* </ListItemButton>
+                </ListItemButton>
               </ListItem>
-            </List> */}
+            </List>
           </Box>
 
           {/* <Box position="absolute" bottom="2rem">
@@ -370,7 +370,7 @@ const Sidebar = ({
   );
 };
 
-export default Sidebar;
+export default Sidebar_user;
 
 
 

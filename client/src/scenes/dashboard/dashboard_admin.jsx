@@ -337,11 +337,14 @@ const Dashboard = () => {
   return (
     <>
       <Crispjs />
-      <Box m="1.5rem 2.5rem">
+      <Box
+        
+        m="1.5rem 2.5rem"
+      >
         <FlexBetween>
-          <Header title="Lender Dashboard" subtitle="Welcome to your dashboard" />
-         
-          <Box>
+          <Header title="Dashboard" subtitle="Welcome to your dashboard" />
+
+          {/* <Box>
             <Button
               sx={{
                 backgroundColor: theme.palette.secondary.light,
@@ -356,7 +359,7 @@ const Dashboard = () => {
             >
               Check CIBIL Score
             </Button>
-          </Box>
+          </Box> */}
         </FlexBetween>
 
         <Box
@@ -366,7 +369,9 @@ const Dashboard = () => {
           gridAutoRows="160px"
           gap="20px"
           sx={{
-            "& > div": { gridColumn: isNonMediumScreens ? undefined : "span 12" },
+            "& > div": {
+              gridColumn: isNonMediumScreens ? undefined : "span 12",
+            },
           }}
         >
           {/* ROW 1 */}
@@ -381,7 +386,7 @@ const Dashboard = () => {
               />
             }
           /> */}
-          <StatBox
+          {/* <StatBox
             title="Crop Prediction"
             value={cropPrediction}
             increase="" // If applicable
@@ -398,7 +403,7 @@ const Dashboard = () => {
                 sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
               />
             }
-          />
+          /> */}
           <Box
             gridColumn="span 8"
             gridRow="span 2"
@@ -415,7 +420,7 @@ const Dashboard = () => {
             description="Since last month"
             icon={
               <PersonAdd
-                sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+                sx={{ color: theme.palette.secondary[800], fontSize: "26px" }}
               />
             }
           />
@@ -424,9 +429,10 @@ const Dashboard = () => {
             value={data && data.yearlySalesTotal}
             increase="+43%"
             description="Since last month"
+            sx={{ color: theme.palette.secondary[800]}}
             icon={
               <Traffic
-                sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+                sx={{ color: theme.palette.secondary[800], fontSize: "26px" }}
               />
             }
           />
@@ -475,7 +481,10 @@ const Dashboard = () => {
             p="1rem"
             borderRadius="0.55rem"
           >
-            <Typography variant="h6" sx={{ color: theme.palette.secondary[100] }}>
+            <Typography
+              variant="h6"
+              sx={{ color: theme.palette.secondary[100] }}
+            >
               Sales By Category
             </Typography>
             <BreakdownChart isDashboard={true} />

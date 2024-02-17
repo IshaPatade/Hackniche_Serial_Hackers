@@ -1,98 +1,103 @@
 import React, { useMemo, useState } from "react";
 import { ResponsiveLine } from "@nivo/line";
 import { useTheme, MenuItem, Select } from "@mui/material";
-import { data } from "./cmo_msp_mandi";
+import { data } from "../assets/sales_time";
 
 const OverviewChart = ({ data2 }) => {
   const theme = useTheme();
-  const [selectedCommodity, setSelectedCommodity] = useState("SUGAR-CANE");
+  const [selectedCategory, setSelectedCategory] = useState("Manual Brew");
 
-  const handleCommodityChange = (event) => {
-    setSelectedCommodity(event.target.value);
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
   };
 
-  const filteredData = useMemo(() => {
+  const aggregatedData = useMemo(() => {
     if (!data) return [];
 
-    // Filter data based on selected commodity
-    console.log("Selected commodity:", selectedCommodity);
-    return data.filter((item) => item.commodity === selectedCommodity);
-  }, [data, selectedCommodity]);
+    // Filter data based on selected category
+    const filteredData = data.filter(
+      (item) => item.Category === selectedCategory
+    );
 
-  const chartData = useMemo(() => {
-    if (!filteredData) return [];
+    // Aggregate filtered data based on timestamp
+    const sumsByTimestamp = {};
+    filteredData.forEach((item) => {
+      const timestamp = item.Timestamp;
+      const total = parseFloat(item["Final Total"]);
+      if (!sumsByTimestamp[timestamp]) {
+        sumsByTimestamp[timestamp] = 0;
+      }
+      sumsByTimestamp[timestamp] += total;
+    });
 
-    return filteredData.map((item) => ({
-      x: item.year,
-      y: item.msprice,
+    // Convert aggregated data to an array of objects with 'x' and 'y' properties
+    const aggregatedArray = Object.keys(sumsByTimestamp).map((timestamp) => ({
+      x: timestamp,
+      y: sumsByTimestamp[timestamp],
     }));
-  }, [filteredData]);
 
-  console.log("Filtered data:", filteredData);
-  console.log("Chart data:", chartData);
+    return aggregatedArray;
+  }, [data, selectedCategory]);
 
   return (
     <>
       <Select
-      sx={{
-        padding: '0px',
-        width: '20%',
-        height: '15%',
-        marginBottom: '20px',
-      }}
-        value={selectedCommodity}
-        onChange={handleCommodityChange}
+        sx={{
+          padding: "0px",
+          width: "20%",
+          height: "10%",
+          marginBottom: "20px",
+          color: theme.palette.secondary[800],
+          border: "1px solid #3C2A21",
+        }}
+        value={selectedCategory}
+        onChange={handleCategoryChange}
         displayEmpty
-        inputProps={{ "aria-label": "Select Commodity" }}
+        inputProps={{ "aria-label": "Select Category" }}
       >
-        <MenuItem value="" disabled>
-          Select Commodity
+        <MenuItem
+          value=""
+          sx={{ color: theme.palette.secondary[800] }}
+          disabled
+        >
+          Select Category
         </MenuItem>
         {[
-          "COTTON",
-          "RICE(PADDY-HUS)",
-          "Jowar_Hybrid",
-          "SORGUM(JAWAR)",
-          "BAJRI",
-          "MAIZE",
-          "Ragi_Maldandi",
-          "SPLIT BLACK GRAM",
-          "SUNFLOWER",
-          "Soyabean_Black",
-          "SESAMUM",
-          "WHEAT(HUSKED)",
-          "BARLI",
-          "MUSTARD",
-          "SAFFLOWER",
-          "Toria_Yellow",
-          "COCONUT",
-        ].map((commodity) => (
-          <MenuItem key={commodity} value={commodity}>
-            {commodity}
+          "Manual Brew",
+          "Cold Coffee",
+          "Extra Toppings",
+          "Food Menu",
+          "Hot Coffee",
+          "Hot Chocolate",
+          "Milk",
+          "Savouries",
+        ].map((category) => (
+          <MenuItem key={category} value={category}>
+            {category}
           </MenuItem>
         ))}
       </Select>
       <ResponsiveLine
-        data={[{ id: selectedCommodity, data: chartData }]}
+        data={[{ id: selectedCategory, data: aggregatedData }]}
         theme={{
           axis: {
             domain: {
               line: {
-                stroke: theme.palette.secondary[200],
+                stroke: theme.palette.secondary[800],
               },
             },
             legend: {
               text: {
-                fill: theme.palette.secondary[200],
+                fill: theme.palette.secondary[800],
               },
             },
             ticks: {
               line: {
-                stroke: theme.palette.secondary[200],
+                stroke: theme.palette.secondary[800],
                 strokeWidth: 1,
               },
               text: {
-                fill: theme.palette.secondary[200],
+                fill: theme.palette.secondary[800],
               },
             },
           },
@@ -107,31 +112,25 @@ const OverviewChart = ({ data2 }) => {
             },
           },
         }}
-        margin={{ top: 10, right: 50, bottom: 100, left: 70 }}
-        xScale={{ type: "linear", min: "auto", max: "auto" }}
-        yScale={{ type: "linear", min: "auto", max: "auto", stacked: false, reverse: false }}
-        curve="cardinal"
+        margin={{ top: 8, right: 100, bottom: 95, left: 80 }}
+        xScale={{ type: "point" }}
+        yScale={{ type: "linear", min: 0, max: "auto" }}
+        curve="linear"
         axisBottom={{
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: "Year",
+          legend: "Timestamp",
+          legendOffset: 53,
           legendPosition: "middle",
-          legendOffset: 36,
+          tickRotation: -45,
         }}
         axisLeft={{
-          tickValues: 5,
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: "MS Price",
-          legendPosition: "middle",
+          legend: "Sum",
           legendOffset: -60,
+          legendPosition: "middle",
         }}
         enableGridX={false}
         enableGridY={false}
         colors={{ scheme: "nivo" }}
-        lineWidth={2}
+        lineWidth={3}
         pointSize={10}
         pointColor={{ theme: "background" }}
         pointBorderWidth={2}
@@ -139,30 +138,33 @@ const OverviewChart = ({ data2 }) => {
         pointLabelYOffset={-12}
         useMesh={true}
       />
- </>
+    </>
   );
 };
 
 export default OverviewChart;
 
-
-
-
-
-// import React, { useMemo } from "react";
+// import React, { useMemo, useState } from "react";
 // import { ResponsiveLine } from "@nivo/line";
-// import { useTheme } from "@mui/material";
-// import { data } from "./cmo_msp_mandi";
+// import { useTheme, MenuItem, Select } from "@mui/material";
+// // import { data } from "./cmo_msp_mandi";
+// import {data } from "../assets/sales_time.js"
 
 // const OverviewChart = ({ data2 }) => {
 //   const theme = useTheme();
+//   const [selectedCommodity, setSelectedCommodity] = useState("Manual Brew");
+
+//   const handleCommodityChange = (event) => {
+//     setSelectedCommodity(event.target.value);
+//   };
 
 //   const filteredData = useMemo(() => {
 //     if (!data) return [];
 
-//     // Filter data for commodity "SUGAR-CANE"
-//     return data.filter((item) => item.commodity === "SUGAR-CANE");
-//   }, [data]);
+//     // Filter data based on selected commodity
+//     console.log("Selected commodity:", selectedCommodity);
+//     return data.filter((item) => item.commodity === selectedCommodity);
+//   }, [data, selectedCommodity]);
 
 //   const chartData = useMemo(() => {
 //     if (!filteredData) return [];
@@ -173,75 +175,213 @@ export default OverviewChart;
 //     }));
 //   }, [filteredData]);
 
+//   console.log("Filtered data:", filteredData);
+//   console.log("Chart data:", chartData);
+
 //   return (
-//     <ResponsiveLine
-//       data={[{ id: "SUGAR-CANE", data: chartData }]}
-//       theme={{
-//         axis: {
-//           domain: {
-//             line: {
-//               stroke: theme.palette.secondary[200],
+//     <>
+//       <Select
+//         sx={{
+//           padding: "0px",
+//           width: "20%",
+//           height: "15%",
+//           marginBottom: "20px",
+//         }}
+//         value={selectedCommodity}
+//         onChange={handleCommodityChange}
+//         displayEmpty
+//         inputProps={{ "aria-label": "Select Commodity" }}
+//       >
+//         <MenuItem value="" disabled>
+//           Select Commodity
+//         </MenuItem>
+//         {[
+//           "Manual Brew",
+//           "Cold Coffee",
+//           "Extra Toppings",
+//           "Food Menu",
+//           "Hot Coffee",
+//           "Hot Chocolate",
+//           "Milk",
+//           "Savouries",
+//         ].map((commodity) => (
+//           <MenuItem key={commodity} value={commodity}>
+//             {commodity}
+//           </MenuItem>
+//         ))}
+//       </Select>
+//       <ResponsiveLine
+//         data={[{ id: selectedCommodity, data: chartData }]}
+//         theme={{
+//           axis: {
+//             domain: {
+//               line: {
+//                 stroke: theme.palette.secondary[200],
+//               },
+//             },
+//             legend: {
+//               text: {
+//                 fill: theme.palette.secondary[200],
+//               },
+//             },
+//             ticks: {
+//               line: {
+//                 stroke: theme.palette.secondary[200],
+//                 strokeWidth: 1,
+//               },
+//               text: {
+//                 fill: theme.palette.secondary[200],
+//               },
 //             },
 //           },
-//           legend: {
+//           legends: {
 //             text: {
 //               fill: theme.palette.secondary[200],
 //             },
 //           },
-//           ticks: {
-//             line: {
-//               stroke: theme.palette.secondary[200],
-//               strokeWidth: 1,
-//             },
-//             text: {
-//               fill: theme.palette.secondary[200],
+//           tooltip: {
+//             container: {
+//               color: theme.palette.primary.main,
 //             },
 //           },
-//         },
-//         legends: {
-//           text: {
-//             fill: theme.palette.secondary[200],
-//           },
-//         },
-//         tooltip: {
-//           container: {
-//             color: theme.palette.primary.main,
-//           },
-//         },
-//       }}
-//       margin={{ top: 20, right: 50, bottom: 50, left: 70 }}
-//       xScale={{ type: "linear", min: "auto", max: "auto" }}
-//       yScale={{ type: "linear", min: "auto", max: "auto", stacked: false, reverse: false }}
-//       curve="cardinal"
-//       axisBottom={{
-//         tickSize: 5,
-//         tickPadding: 5,
-//         tickRotation: 0,
-//         legend: "Year",
-//         legendPosition: "middle",
-//         legendOffset: 36,
-//       }}
-//       axisLeft={{
-//         tickValues: 5,
-//         tickSize: 5,
-//         tickPadding: 5,
-//         tickRotation: 0,
-//         legend: "MS Price",
-//         legendPosition: "middle",
-//         legendOffset: -60,
-//       }}
-//       enableGridX={false}
-//       enableGridY={false}
-//       colors={{ scheme: "nivo" }}
-//       lineWidth={2}
-//       pointSize={10}
-//       pointColor={{ theme: "background" }}
-//       pointBorderWidth={2}
-//       pointBorderColor={{ from: "serieColor" }}
-//       pointLabelYOffset={-12}
-//       useMesh={true}
-//     />
+//         }}
+//         margin={{ top: 10, right: 50, bottom: 100, left: 70 }}
+//         xScale={{ type: "linear", min: "auto", max: "auto" }}
+//         yScale={{
+//           type: "linear",
+//           min: "auto",
+//           max: "auto",
+//           stacked: false,
+//           reverse: false,
+//         }}
+//         curve="cardinal"
+//         axisBottom={{
+//           tickSize: 5,
+//           tickPadding: 5,
+//           tickRotation: 0,
+//           legend: "Year",
+//           legendPosition: "middle",
+//           legendOffset: 36,
+//         }}
+//         axisLeft={{
+//           tickValues: 5,
+//           tickSize: 5,
+//           tickPadding: 5,
+//           tickRotation: 0,
+//           legend: "MS Price",
+//           legendPosition: "middle",
+//           legendOffset: -60,
+//         }}
+//         enableGridX={false}
+//         enableGridY={false}
+//         colors={{ scheme: "nivo" }}
+//         lineWidth={2}
+//         pointSize={10}
+//         pointColor={{ theme: "background" }}
+//         pointBorderWidth={2}
+//         pointBorderColor={{ from: "serieColor" }}
+//         pointLabelYOffset={-12}
+//         useMesh={true}
+//       />
+//     </>
 //   );
 // };
 
 // export default OverviewChart;
+
+// // import React, { useMemo } from "react";
+// // import { ResponsiveLine } from "@nivo/line";
+// // import { useTheme } from "@mui/material";
+// // import { data } from "./cmo_msp_mandi";
+
+// // const OverviewChart = ({ data2 }) => {
+// //   const theme = useTheme();
+
+// //   const filteredData = useMemo(() => {
+// //     if (!data) return [];
+
+// //     // Filter data for commodity "SUGAR-CANE"
+// //     return data.filter((item) => item.commodity === "SUGAR-CANE");
+// //   }, [data]);
+
+// //   const chartData = useMemo(() => {
+// //     if (!filteredData) return [];
+
+// //     return filteredData.map((item) => ({
+// //       x: item.year,
+// //       y: item.msprice,
+// //     }));
+// //   }, [filteredData]);
+
+// //   return (
+// //     <ResponsiveLine
+// //       data={[{ id: "SUGAR-CANE", data: chartData }]}
+// //       theme={{
+// //         axis: {
+// //           domain: {
+// //             line: {
+// //               stroke: theme.palette.secondary[200],
+// //             },
+// //           },
+// //           legend: {
+// //             text: {
+// //               fill: theme.palette.secondary[200],
+// //             },
+// //           },
+// //           ticks: {
+// //             line: {
+// //               stroke: theme.palette.secondary[200],
+// //               strokeWidth: 1,
+// //             },
+// //             text: {
+// //               fill: theme.palette.secondary[200],
+// //             },
+// //           },
+// //         },
+// //         legends: {
+// //           text: {
+// //             fill: theme.palette.secondary[200],
+// //           },
+// //         },
+// //         tooltip: {
+// //           container: {
+// //             color: theme.palette.primary.main,
+// //           },
+// //         },
+// //       }}
+// //       margin={{ top: 20, right: 50, bottom: 50, left: 70 }}
+// //       xScale={{ type: "linear", min: "auto", max: "auto" }}
+// //       yScale={{ type: "linear", min: "auto", max: "auto", stacked: false, reverse: false }}
+// //       curve="cardinal"
+// //       axisBottom={{
+// //         tickSize: 5,
+// //         tickPadding: 5,
+// //         tickRotation: 0,
+// //         legend: "Year",
+// //         legendPosition: "middle",
+// //         legendOffset: 36,
+// //       }}
+// //       axisLeft={{
+// //         tickValues: 5,
+// //         tickSize: 5,
+// //         tickPadding: 5,
+// //         tickRotation: 0,
+// //         legend: "MS Price",
+// //         legendPosition: "middle",
+// //         legendOffset: -60,
+// //       }}
+// //       enableGridX={false}
+// //       enableGridY={false}
+// //       colors={{ scheme: "nivo" }}
+// //       lineWidth={2}
+// //       pointSize={10}
+// //       pointColor={{ theme: "background" }}
+// //       pointBorderWidth={2}
+// //       pointBorderColor={{ from: "serieColor" }}
+// //       pointLabelYOffset={-12}
+// //       useMesh={true}
+// //     />
+// //   );
+// // };
+
+// // export default OverviewChart;
