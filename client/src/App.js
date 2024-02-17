@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { themeSettings } from "theme";
 import Layout from "scenes/layout";
+import User_Layout from "scenes/user";
 import Dashboard_admin from "./scenes/dashboard/dashboard_admin";
 import Dashboard_user from "./scenes/dashboard/dashboard_farmer";
 import Products from "scenes/products";
@@ -54,11 +55,14 @@ function App() {
               path="/auth"
               element={!user ? <AuthForm /> : <Navigate to="/dashboard" />}
             />
+            <Route element={<User_Layout />}>
+            <Route path="/dashboard_user" element={<Dashboard_user />} />
+            </Route>
             <Route element={<Layout />}>
               {/* <Route path="/" element={<Navigate to="/dashboard" replace />} />  */}
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/dashboard_admin" element={<Dashboard_admin />} />
-              <Route path="/dashboard_user" element={<Dashboard_user />} />
+              
               <Route path="/payment" element={<Payment />} />
               <Route path="/farmerform" element={<FarmerForm />} />
               <Route path="/products" element={<Products />} />

@@ -2,6 +2,8 @@ import React, { useMemo, useState } from "react";
 import { ResponsiveLine } from "@nivo/line";
 import { useTheme, MenuItem, Select } from "@mui/material";
 import { data } from "./cmo_msp_mandi";
+import { ResponsiveBar } from "@nivo/bar";
+import { ResponsivePie } from "@nivo/pie";
 
 const OverviewChart = ({ data2 }) => {
   const theme = useTheme();
@@ -19,14 +21,34 @@ const OverviewChart = ({ data2 }) => {
     return data.filter((item) => item.commodity === selectedCommodity);
   }, [data, selectedCommodity]);
 
-  const chartData = useMemo(() => {
-    if (!filteredData) return [];
+  // const chartData = useMemo(() => {
+  //   if (!filteredData) return [];
 
-    return filteredData.map((item) => ({
-      x: item.year,
-      y: item.msprice,
-    }));
+  //   return filteredData.map((item) => ({
+  //     x: item.year,
+  //     y: item.msprice,
+  //   }));
+  // }, [filteredData]);
+
+  // const constantChartData = useMemo(() => {
+  //   // Assuming constant data structure is similar to `data`
+  //   return data.map((item) => ({ x: item.year, y: item.msprice }));
+  // }, [data]);
+
+  const chartData = useMemo(() => {
+    return filteredData.map((item) => [
+      item.year, // Bar label (x-axis)
+      item.msprice, // Bar value (y-axis)
+    ]);
   }, [filteredData]);
+
+  const constantChartData = useMemo(() => {
+    // Assuming constant data structure is similar to `data`
+    return data.map((item) => [
+      item.year, // Bar label (x-axis)
+      item.msprice, // Bar value (y-axis)
+    ]);
+  }, [data]);
 
   console.log("Filtered data:", filteredData);
   console.log("Chart data:", chartData);
@@ -34,12 +56,12 @@ const OverviewChart = ({ data2 }) => {
   return (
     <>
       <Select
-      sx={{
-        padding: '0px',
-        width: '20%',
-        height: '15%',
-        marginBottom: '20px',
-      }}
+        sx={{
+          padding: '0px',
+          width: '20%',
+          height: '15%',
+          marginBottom: '20px',
+        }}
         value={selectedCommodity}
         onChange={handleCommodityChange}
         displayEmpty
@@ -72,8 +94,8 @@ const OverviewChart = ({ data2 }) => {
           </MenuItem>
         ))}
       </Select>
-      <ResponsiveLine
-        data={[{ id: selectedCommodity, data: chartData }]}
+      <ResponsiveBar
+        data={[{ id: "Constant Data", data: constantChartData }, { id: selectedCommodity, data: chartData }]}
         theme={{
           axis: {
             domain: {
@@ -107,10 +129,13 @@ const OverviewChart = ({ data2 }) => {
             },
           },
         }}
-        margin={{ top: 10, right: 50, bottom: 100, left: 70 }}
-        xScale={{ type: "linear", min: "auto", max: "auto" }}
-        yScale={{ type: "linear", min: "auto", max: "auto", stacked: false, reverse: false }}
-        curve="cardinal"
+        // layout="horizontal" // Optional: Set layout to horizontal for bar chart
+        indexBy="0" // Index for bars based on first element of each inner array
+        margin={{ top: 20, right: 130, bottom: 100, left: 60 }}
+        padding={0.3}
+        valueScale={{ type: 'linear' }}
+        indexScale={{ type: 'band', round: true }}
+        colors={{ scheme: "nivo" }}
         axisBottom={{
           tickSize: 5,
           tickPadding: 5,
@@ -126,11 +151,10 @@ const OverviewChart = ({ data2 }) => {
           tickRotation: 0,
           legend: "MS Price",
           legendPosition: "middle",
-          legendOffset: -60,
+          legendOffset: -40,
         }}
         enableGridX={false}
         enableGridY={false}
-        colors={{ scheme: "nivo" }}
         lineWidth={2}
         pointSize={10}
         pointColor={{ theme: "background" }}
@@ -139,7 +163,7 @@ const OverviewChart = ({ data2 }) => {
         pointLabelYOffset={-12}
         useMesh={true}
       />
- </>
+    </>
   );
 };
 
