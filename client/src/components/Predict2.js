@@ -1353,7 +1353,12 @@ based on the quantity of the items sold in the above data, make 7 combos of 2 it
       {analysisResult && (
         <div className="margin:'20px'">
           <h2>Analysis Result:</h2>
-          {renderParagraphs(analysisResult)}
+          {analysisResult.split("\n").map((line, index) => (
+            <div key={index} className="card">
+              <h3>Line {index + 1}</h3>
+              <p>{line}</p>
+            </div>
+          ))}
         </div>
       )}
     </div>
