@@ -21,9 +21,8 @@ import Breakdown from "scenes/breakdown";
 import Admin from "scenes/admin";
 import Performance from "scenes/performance";
 import Form from "components/Form";
-import Map from "components/Map"
+import Map from "components/Map";
 import AuthForm from "./pages/Auth/AuthForm";
-
 
 import { useAuthContext } from "./hooks/useAuthContext";
 import Payment from "components/Payment";
@@ -53,7 +52,7 @@ function App() {
                 )
               }
             />  */}
-            <Route path="/geography" element={<Geography />} />
+            <Route path="/competitors" element={<Geography />} />
             <Route path="/" element={<Navigate to="/auth" />} />
             <Route
               path="/auth"
@@ -74,7 +73,7 @@ function App() {
               <Route path="/customers" element={<Customers />} />
               <Route path="/transactions" element={<Transactions />} />
 
-              <Route path="/overview" element={<Overview />} />
+              <Route path="/happy hours" element={<Overview />} />
               <Route path="/daily" element={<Daily />} />
               <Route path="/monthly" element={<Monthly />} />
               <Route path="/breakdown" element={<Breakdown />} />
@@ -87,20 +86,13 @@ function App() {
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
-      <Crispjs />
+      {/* <Crispjs /> */}
       {/* </div> */}
     </>
   );
 }
 
 export default App;
-
-
-
-
-
-
-
 
 // import { CssBaseline, ThemeProvider } from "@mui/material";
 // import { createTheme } from "@mui/material/styles";
@@ -131,7 +123,6 @@ export default App;
 // import FarmerForm from "components/FarmerForm";
 // import Dashboard from "scenes/dashboard";
 
-
 // function App() {
 //     const { user } = useAuthContext();
 //   const mode = useSelector((state) => state.global.mode);
@@ -139,7 +130,7 @@ export default App;
 //   return (
 //     // <div className="app">
 //     <>
-      
+
 //       <BrowserRouter>
 //         <ThemeProvider theme={theme}>
 //           <CssBaseline />
@@ -160,7 +151,7 @@ export default App;
 //               element={
 //                   <Navigate to="/auth" />
 //               }
-//             /> 
+//             />
 //             <Route
 //               path="/auth"
 //               element={!user ? <AuthForm /> : <Navigate to="/dashboard" />}

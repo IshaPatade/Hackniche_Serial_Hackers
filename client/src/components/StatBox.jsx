@@ -6,7 +6,7 @@ const StatBox = ({ title, value, increase, icon, description }) => {
   const theme = useTheme();
   return (
     <Box
-      gridColumn="span 2"
+      gridColumn="span 4"
       gridRow="span 1"
       display="flex"
       flexDirection="column"
@@ -37,7 +37,7 @@ const StatBox = ({ title, value, increase, icon, description }) => {
         <Typography
           variant="h5"
           fontStyle="italic"
-          sx={{ color: theme.palette.secondary[800] }}
+          sx={{ color: 'green' }}
         >
           {increase}
         </Typography>

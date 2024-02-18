@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Chart from 'chart.js/auto';
-import Etterra_chart from "./Piechart"
-import Header from 'components/Header';
+import React, { useState, useEffect } from "react";
+import Chart from "chart.js/auto";
+import Etterra_chart from "./Piechart";
+import Header from "components/Header";
 import { Typography, Box, useTheme } from "@mui/material";
-import PieChart from './OtherPiecharts';
-
+import PieChart from "./OtherPiecharts";
 
 const Graph = () => {
   const [hotelData, setHotelData] = useState({
@@ -25,57 +24,60 @@ const Graph = () => {
 
     // Function to update the chart
     const updateChart = () => {
-      const ctx = document.getElementById('myChart');
-      
+      const ctx = document.getElementById("myChart");
+
       // Destroy existing chart instance if it exists
       if (chartInstance) {
         chartInstance.destroy();
       }
 
-      const labels = hotelData.hotel1.map(data => data.rating);
+      const labels = hotelData.hotel1.map((data) => data.rating);
 
       // Extract data for each hotel
-      const hotel1Data = hotelData.hotel1.map(data => data.reviews);
-      const hotel2Data = hotelData.hotel2.map(data => data.reviews);
+      const hotel1Data = hotelData.hotel1.map((data) => data.reviews);
+      const hotel2Data = hotelData.hotel2.map((data) => data.reviews);
 
       // Create new chart instance
       chartInstance = new Chart(ctx, {
-        type: 'bar',
+        type: "bar",
         data: {
           labels: labels,
-          datasets: [{
-            label: 'Hotel 1',
-            data: hotel1Data,
-            backgroundColor: '#990000', // Red color for Hotel 1
-            borderColor: '#990000',
-            borderWidth: 1,
-          }, {
-            label: 'Hotel 2',
-            data: hotel2Data,
-            backgroundColor: '#e6ffe6', // Blue color for Hotel 2
-            borderColor: '#e6ffe6',
-            borderWidth: 1,
-          }]
+          datasets: [
+            {
+              label: "Hotel 1",
+              data: hotel1Data,
+              backgroundColor: "#990000", // Red color for Hotel 1
+              borderColor: "#990000",
+              borderWidth: 1,
+            },
+            {
+              label: "Hotel 2",
+              data: hotel2Data,
+              backgroundColor: "#e6ffe6", // Blue color for Hotel 2
+              borderColor: "#e6ffe6",
+              borderWidth: 1,
+            },
+          ],
         },
         options: {
-          indexAxis: 'x',
+          indexAxis: "x",
           scales: {
             x: {
               stacked: false,
             },
             y: {
-              beginAtZero: true
-            }
+              beginAtZero: true,
+            },
           },
           layout: {
             padding: {
               left: 20,
               right: 20,
               top: 20,
-              bottom: 20
-            }
-          }
-        }
+              bottom: 20,
+            },
+          },
+        },
       });
     };
 
@@ -91,28 +93,28 @@ const Graph = () => {
   }, [hotelData]);
 
   // Dynamically adjust canvas width and height based on screen dimensions
-  useEffect(() => {
-    const resizeCanvas = () => {
-      const canvas = document.getElementById('myChart');
-      const parent = canvas.parentElement;
-      canvas.width = parent.clientWidth;
-      canvas.height = parent.clientHeight;
-    };
+  // useEffect(() => {
+  //   const resizeCanvas = () => {
+  //     const canvas = document.getElementById('myChart');
+  //     const parent = canvas.parentElement;
+  //     canvas.width = parent.clientWidth;
+  //     canvas.height = parent.clientHeight;
+  //   };
 
-    resizeCanvas();
+  //   resizeCanvas();
 
-    window.addEventListener('resize', resizeCanvas);
+  //   window.addEventListener('resize', resizeCanvas);
 
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('resize', resizeCanvas);
+  //   };
+  // }, []);
 
   return (
     <>
-      <div style={{ width: "100%", height: "80vh" }}>
+      {/* <div style={{ width: "100%", height: "80vh" }}>
         <canvas id="myChart"></canvas>
-        {/* <div>
+        <div>
         <button onClick={() => setHotelData({
           ...hotelData,
           hotel1: hotelData.hotel1.map(item =>
@@ -125,8 +127,8 @@ const Graph = () => {
             item.rating === 3.8 ? { ...item, reviews: item.reviews + 1 } : item
           )
         })}>Add review to Hotel 2 (Rating: 3.8)</button>
-      </div> */}
       </div>
+      </div> */}
       {/* <Box>
         <Typography
           variant="h2"
@@ -140,12 +142,40 @@ const Graph = () => {
           {subtitle}
         </Typography>
       </Box> */}
-      <p className="text-sm ">Ratings Distribution</p>
+      <h1
+        style={{
+          fontSize: "3rem",
+          color: "black",
+          marginLeft: "40px",
+          marginBottom: "50px",
+        }}
+        className="text-center"
+      >
+        Ratings Distribution
+      </h1>
+
+      <h3
+        style={{
+          fontSize: "1.5rem",
+          color: "black",
+          marginLeft: "40px",
+          marginBottom: "30px",
+        }}
+        className="text-center"
+      >
+        ETTARRA
+      </h3>
       <div
-        style={{ width: "70%", height: "60vh" }}
+        style={{ width: "70%", height: "60vh", marginLeft: "40px" }}
         className="flex justify-between align-center"
       >
         <Etterra_chart style={{ width: "90%", height: "60vh" }} />
+        <h3
+          style={{ fontSize: "1.5rem", color: "black", marginBottom: "0px" }}
+          className="text-center"
+        >
+          Competitors
+        </h3>
         <PieChart />
       </div>
     </>

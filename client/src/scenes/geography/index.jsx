@@ -6,6 +6,7 @@ import { LoadScript } from "@react-google-maps/api";
 import Header from "../../components/Header/Header";
 import List from "../../components/List/List";
 import Map from "../../components/Map/Map";
+import TableContent from "./TableContent";
 
 const Geography = () => {
   const [places, setPlaces] = useState([]);
@@ -29,21 +30,21 @@ const Geography = () => {
     );
   }, []);
 
-  useEffect(() => {
-    const filteredPlaces = places.filter((place) => place.rating > rating);
-    setFilteredPlaces(filteredPlaces);
-  }, [rating]);
+  // useEffect(() => {
+  //   const filteredPlaces = places.filter((place) => place.rating > rating);
+  //   setFilteredPlaces(filteredPlaces);
+  // }, [rating]);
 
-  useEffect(() => {
-    if (bounds.sw && bounds.ne) {
-      setIsLoading(true);
-      getPlacesData(bounds?.sw, bounds?.ne).then((data) => {
-        setPlaces(data?.filter((place) => place.name && place.num_reviews > 0));
-        setFilteredPlaces([]);
-        setIsLoading(false);
-      });
-    }
-  }, [bounds]);
+  // useEffect(() => {
+  //   if (bounds.sw && bounds.ne) {
+  //     setIsLoading(true);
+  //     getPlacesData(bounds?.sw, bounds?.ne).then((data) => {
+  //       setPlaces(data?.filter((place) => place.name && place.num_reviews > 0));
+  //       setFilteredPlaces([]);
+  //       setIsLoading(false);
+  //     });
+  //   }
+  // }, [bounds]);
 
   return (
     <div>
@@ -52,7 +53,7 @@ const Geography = () => {
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item xs={12} md={6}>
           <List
-            places={filteredPlaces.length ? filteredPlaces : places}
+            // places={filteredPlaces.length ? filteredPlaces : places}
             childClicked={childClicked}
             isLoading={isLoading}
             rating={rating}
@@ -72,6 +73,8 @@ const Geography = () => {
           />
         </Grid>
       </Grid>
+      <TableContent/>
+      
     </div>
   );
 };

@@ -33,7 +33,7 @@ import {
   PieChartOutlined,
 } from "@mui/icons-material";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-
+import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import FlexBetween from "./FlexBetween";
 import profileImage from "assets/profile.jpeg";
 
@@ -55,17 +55,17 @@ const navItems = [
     icon: <ReceiptLongOutlined />,
   },
   {
-    text: "Geography",
+    text: "Competitors",
     icon: <PublicOutlined />,
   },
   // {
   //   text: "Sales",
   //   icon: null,
   // },
-  // {
-  //   text: "Overview",
-  //   icon: <PointOfSaleOutlined />,
-  // },
+  {
+    text: "Happy Hours",
+    icon: <SentimentSatisfiedAltIcon />,
+  },
   // {
   //   text: "Daily",
   //   icon: <TodayOutlined />,

@@ -98,7 +98,7 @@ const List = ({
             </Grid>
             </>
           )} */}
-          <div className="text-black ">Ettarra Word Cloud</div>
+          <div className="text-black header black ">Ettarra Word Cloud</div>
       <img
         src={Ettara}
         style={{ width: "100%", height: "auto", marginTop: "20px", marginBottom: "20px" }}

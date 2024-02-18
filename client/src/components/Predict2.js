@@ -1311,7 +1311,7 @@ const Predict2 = () => {
       "Sub_Total": 66.67
     },
 
-based on the quantity of the items sold in the above data, make 7 combos of 2 items, such that low selling stuff is combined with the things that sell well, just give combos and no other extra text 
+based on the quantity of the items sold in the above data, make 7 combos of 2 items, such that low selling stuff is combined with the things that sell well, just give combos and no other extra text , dont give the quantity
 
   ]`;
 
@@ -1352,10 +1352,13 @@ based on the quantity of the items sold in the above data, make 7 combos of 2 it
       ></iframe> */}
       {analysisResult && (
         <div className="margin:'20px'">
-          <h2>Analysis Result:</h2>
+          <h2 className="header">Combo suggestions for profit:</h2>
           {analysisResult.split("\n").map((line, index) => (
-            <div key={index} className="card">
-              <h3>Line {index + 1}</h3>
+            <div
+              key={index}
+              className=" card rounded-md p-4 mb-4 bg-white h-[20px] w-[50px] "
+            >
+              {/* <h3>{index + 1}</h3> */}
               <p>{line}</p>
             </div>
           ))}

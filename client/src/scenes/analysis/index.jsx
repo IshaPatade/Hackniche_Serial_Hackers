@@ -40,7 +40,7 @@ const Analysis = () => {
         </h1>
         <SalesLineGraph salesData={week} />
       </div>
-      <div style={{ width: "100%", height: "70vh", margin: "8% 5%" }}>
+      {/* <div style={{ width: "100%", height: "70vh", margin: "8% 5%" }}>
         <h1
           style={{
             textAlign: "center",
@@ -53,26 +53,26 @@ const Analysis = () => {
           Hourly Sales Bar Graph
         </h1>
         <BarChart data={hour} />
-      </div>
+      </div> */}
       {/* <div className="parallel">
     <ParallelCoordinatesPlot data={parallel} />
       
     </div> */}
-      <div>
+      <div style={{ marginTop: "10%" }}>
         <MatchColumnsCard
           leftItems={[
             "Baked Pav Bhaji",
             "Baked Vada Pav",
-            "Calzones Veg (Calzone Paneer)",
             "Rosella Jam With Filter Coffee Ganache Macaroon (1PIC)",
+            "Calzones Veg (Calzone Paneer)",
             "Strawberry White Chocolate Ganache With Rosella Jam Macroon",
             "Baked Vada Pav",
           ]}
           rightItems={[
             "Baked Vada Pav",
             "Baked Pav Bhaji",
-            "Baked Vada Pav",
             "Strawberry White Chocolate Ganache With Rosella Jam Macroon",
+            "Baked Vada Pav",
             "Rosella Jam With Filter Coffee Ganache Macaroon (1PIC)",
             "Calzones Veg (Calzone Paneer)",
           ]}

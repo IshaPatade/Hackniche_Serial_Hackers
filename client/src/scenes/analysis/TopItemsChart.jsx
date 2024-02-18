@@ -22,7 +22,7 @@ const TopItemsChart = ({ dataset }) => {
         data: {
           labels: labels,
           datasets: [{
-            label: 'Top 20 Selling Items',
+            label: 'Top 8 Selling Items',
             data: data,
             backgroundColor: '#561C24', // Blue color
             borderColor: '#561C24',

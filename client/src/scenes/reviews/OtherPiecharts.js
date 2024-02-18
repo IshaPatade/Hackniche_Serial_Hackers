@@ -3,15 +3,15 @@ import Chart from "chart.js/auto";
 
 const dataMap = {
   abcoffee: {
-    labels: ["0-1", "1-2", "2-3", "3-4", "4-5"],
+    labels: ["1 star", "2 star", "3 star", "4 star", "5 star"],
     values: [6, 10, 54, 20, 27],
   },
   amanda: {
-    labels: ["0-1", "1-2", "2-3", "3-4", "4-5"],
+    labels: ["1 star", "2 star", "3 star", "4 star", "5 star"],
     values: [0, 2, 2, 6, 29],
   },
   "earth cafe": {
-    labels: ["0-1", "1-2", "2-3", "3-4", "4-5"],
+    labels: ["1 star", "2 star", "3 star", "4 star", "5 star"],
     values: [0, 14, 5, 3, 140],
   },
 };
@@ -59,9 +59,13 @@ const PieChart = () => {
   return (
     <>
       <div>
-        <select value={selectedOption} onChange={handleChange} className="">
+        <select
+          value={selectedOption}
+          onChange={handleChange}
+          className="block pieselect w-full px-4 py-2 text-black bg-gray-200 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+        >
           <option value="abcoffee">abcoffee</option>
-          <option value="amanda">amanda</option>
+          <option value="amanda">ananda</option>
           <option value="earth cafe">earth cafe</option>
         </select>
         <canvas ref={chartRef} id="pie-chart"></canvas>

@@ -460,7 +460,7 @@ const Predict = () => {
       "Qty": 1,
       "Unit": "PCS"
     },
-based on this data suggest what raw material should the shop keep in stock based on quantity of sales of item name with correspondance to raw material, suggest any 5 raw materials that the shop must keep in stock all the time, and just give the names of raw material, succeeding the follow sentence : Keep the following raw materials in stock :
+based on this data suggest what raw material should the shop keep in stock based on quantity of sales of item name with correspondance to raw material, suggest any 5 raw materials that the shop must keep in stock all the time, and just give the names of raw material, dont add asterisk for headings or any other extra characters,give output in new lines
   ]`;
 
   useEffect(() => {
@@ -498,10 +498,24 @@ based on this data suggest what raw material should the shop keep in stock based
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
       ></iframe> */}
-      {analysisResult && (
+      {/* {analysisResult && (
         <div className="margin:'20px'">
           <h2>Analysis Result:</h2>
           {renderParagraphs(analysisResult)}
+        </div>
+      )} */}
+      {analysisResult && (
+        <div className="margin:'20px'">
+          <h1 className=" header ">Keep the following raw materials in stock:</h1>
+          {analysisResult.split("\n").map((line, index) => (
+            <div
+              key={index}
+              className=" card-dash rounded-md p-4 mb-4 bg-white h-[20px] w-[50px] "
+            >
+              {/* <h3>{index + 1}</h3> */}
+              <p>{line}</p>
+            </div>
+          ))}
         </div>
       )}
     </div>

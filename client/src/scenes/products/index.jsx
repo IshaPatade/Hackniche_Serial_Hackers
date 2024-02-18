@@ -30,17 +30,17 @@ const Product = ({
 
   return (
     <>
-      <h1 style={{ fontSize: "2rem", color: "black" }}>
+      <h1 style={{ fontSize: "2rem", color: "black", marginBottom: "3%" }}>
         To generate profit from Low selling product
       </h1>
       <Card
         sx={{
-          backgroundImage: "none",
           backgroundColor: theme.palette.background.alt,
           borderRadius: "0.55rem",
+          textAlign: "center",
         }}
       >
-        <CardContent>
+        {/* <CardContent>
           <Typography
             sx={{ fontSize: 14 }}
             color={theme.palette.secondary[700]}
@@ -60,8 +60,8 @@ const Product = ({
           <Rating value={rating} readOnly />
 
           <Typography variant="body2">{description}</Typography>
-        </CardContent>
-        <CardActions>
+        </CardContent> */}
+        {/* <CardActions>
           <Button
             variant="primary"
             size="small"
@@ -69,30 +69,46 @@ const Product = ({
           >
             See More
           </Button>
-        </CardActions>
-        <Collapse
+        </CardActions> */}
+        {/* <Collapse
           in={isExpanded}
           timeout="auto"
           unmountOnExit
           sx={{
             color: theme.palette.neutral[300],
           }}
+        > */}
+        {/* <CardContent>
+          <Typography>id: {_id}</Typography>
+          <Typography>Supply Left: {supply}</Typography>
+          <Typography>
+            Yearly Sales This Year: {stat?.yearlySalesTotal || "N/A"}
+          </Typography>
+          <Typography>
+            Yearly Units Sold This Year: {stat?.yearlyTotalSoldUnits || "N/A"}
+          </Typography>
+        </CardContent> */}
+        <div
+          style={{
+            display: "flex",
+            textAlign: "center",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
-          <CardContent>
-            <Typography>id: {_id}</Typography>
-            <Typography>Supply Left: {supply}</Typography>
-            <Typography>
-              Yearly Sales This Year: {stat?.yearlySalesTotal || "N/A"}
-            </Typography>
-            <Typography>
-              Yearly Units Sold This Year: {stat?.yearlyTotalSoldUnits || "N/A"}
-            </Typography>
-            <img src={ComboImage} alt="Combo" /> {/* Display the Combo image */}
-          </CardContent>
-          <h5 style={{ fontSize: "1rem", color: "black" }}>
-            <Predict2  />
-          </h5>
-        </Collapse>
+          <img
+            src={ComboImage}
+            alt="Combo"
+            width="80%"
+            height="70vh"
+            style={{ textAlign: "center" }}
+          />
+        </div>
+        {/* Display the Combo image */}
+        <h5 style={{ fontSize: "1rem", color: "black" }}>
+          <Predict2 />
+        </h5>
+        {/* </Collapse> */}
       </Card>
     </>
   );
