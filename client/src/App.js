@@ -21,8 +21,9 @@ import Breakdown from "scenes/breakdown";
 import Admin from "scenes/admin";
 import Performance from "scenes/performance";
 import Form from "components/Form";
-
+import Map from "components/Map"
 import AuthForm from "./pages/Auth/AuthForm";
+
 
 import { useAuthContext } from "./hooks/useAuthContext";
 import Payment from "components/Payment";
@@ -52,13 +53,14 @@ function App() {
                 )
               }
             />  */}
+            <Route path="/geography" element={<Geography />} />
             <Route path="/" element={<Navigate to="/auth" />} />
             <Route
               path="/auth"
               element={!user ? <AuthForm /> : <Navigate to="/dashboard" />}
             />
             <Route element={<User_Layout />}>
-            <Route path="/dashboard_user" element={<Dashboard_user />} />
+              <Route path="/dashboard_user" element={<Dashboard_user />} />
             </Route>
             <Route element={<Layout />}>
               {/* <Route path="/" element={<Navigate to="/dashboard" replace />} />  */}
@@ -71,7 +73,7 @@ function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/customers" element={<Customers />} />
               <Route path="/transactions" element={<Transactions />} />
-              <Route path="/geography" element={<Geography />} />
+
               <Route path="/overview" element={<Overview />} />
               <Route path="/daily" element={<Daily />} />
               <Route path="/monthly" element={<Monthly />} />
@@ -80,6 +82,7 @@ function App() {
               <Route path="/performance" element={<Performance />} />
               <Route path="/form" element={<Form />} />
               <Route path="/news" element={<News />} />
+              <Route path="/maps" element={<Map />} />
             </Route>
           </Routes>
         </ThemeProvider>

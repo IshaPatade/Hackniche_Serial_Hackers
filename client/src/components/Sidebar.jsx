@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import pay from "../hooks/usePay"
+import pay from "../hooks/usePay";
 import {
   Box,
   Divider,
@@ -42,10 +42,10 @@ const navItems = [
     text: "Dashboard",
     icon: <HomeOutlined />,
   },
-  // {
-  //   text: "Products",
-  //   icon: <ShoppingCartOutlined />,
-  // },
+  {
+    text: "Products",
+    icon: <ShoppingCartOutlined />,
+  },
   {
     text: "Reviews",
     icon: <Groups2Outlined />,
@@ -54,10 +54,10 @@ const navItems = [
     text: "Analysis",
     icon: <ReceiptLongOutlined />,
   },
-  // {
-  //   text: "Geography",
-  //   icon: <PublicOutlined />,
-  // },
+  {
+    text: "Geography",
+    icon: <PublicOutlined />,
+  },
   // {
   //   text: "Sales",
   //   icon: null,
@@ -135,7 +135,6 @@ const Sidebar = ({
         "Content-Type": "application/json",
       },
     });
-
 
     const response = await fetch("http://localhost:4000/order", {
       method: "POST",
@@ -323,8 +322,8 @@ const Sidebar = ({
                     <CurrencyRupeeIcon />
                   </ListItemIcon>
                   <ListItemText primary="Pay" /> */}
-                  {/* <ChevronRightOutlined sx={{ ml: "auto" }} /> */}
-                {/* </ListItemButton>
+            {/* <ChevronRightOutlined sx={{ ml: "auto" }} /> */}
+            {/* </ListItemButton>
               </ListItem>
             </List> */}
           </Box>
@@ -371,14 +370,6 @@ const Sidebar = ({
 };
 
 export default Sidebar;
-
-
-
-
-
-
-
-
 
 // import React from "react";
 // import { useEffect, useState } from "react";
@@ -476,9 +467,6 @@ export default Sidebar;
 //   },
 // ];
 
-
-
-
 // const Sidebar = ({
 //   user,
 //   drawerWidth,
@@ -494,7 +482,6 @@ export default Sidebar;
 //   useEffect(() => {
 //     setActive(pathname.substring(1));
 //   }, [pathname]);
-
 
 //  const paymentfunction = () =>{
 //     navigate('/payment')

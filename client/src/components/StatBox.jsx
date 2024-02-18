@@ -14,7 +14,7 @@ const StatBox = ({ title, value, increase, icon, description }) => {
       p="1.25rem 1rem"
       flex="1 1 100%"
       borderColor={theme.palette.secondary[800]}
-      border="1px solid #3C2A21"
+      border="1px solid "
       // backgroundColor={theme.palette.background.alt}
       backgroundColor={theme.palette.secondary[200]}
       borderRadius="0.55rem"
